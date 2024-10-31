@@ -10,14 +10,15 @@ public class LoginPage
     private By email = By.id("email");
     private By senha = By.id("pass");
     private By enter = By.id("login");
-    private By msgAlertSucesso = By.cssSelector("#toast_notification > div:nth-child(2) > div > div");
-    protected WebDriver driver = new ChromeDriver();
+    private By msgAlertSucesso = By.cssSelector("#toast_notification > div > div > div");
+    protected WebDriver driver;
     private By provaHome = new By.ById("top_menu");
 
 
     public void abrirBug()
     {
         WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         driver.get("http://bug.dev.hill/signin");
     }
     public void preencherEmail(String emailUsuario)
@@ -34,8 +35,12 @@ public class LoginPage
     }
     public String msgAlert()
     {
-        driver.findElement(msgAlertSucesso).getText();
-        return null;
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return driver.findElement(msgAlertSucesso).getText();
     }
     public void fecharBug()
     {
@@ -46,6 +51,11 @@ public class LoginPage
     }
     public void acessoHome()
     {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         driver.findElement(provaHome);
     }
 }
