@@ -14,25 +14,28 @@ public class LoginPage
     protected WebDriver driver;
     private By provaHome = new By.ById("top_menu");
 
-
     public void abrirBug()
     {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.get("http://bug.dev.hill/signin");
     }
+
     public void preencherEmail(String emailUsuario)
     {
         driver.findElement(email).sendKeys(emailUsuario);
     }
+
     public void preencherSenha(String senhaUsuario)
     {
         driver.findElement(senha).sendKeys(senhaUsuario);
     }
+
     public void clicarEntrar()
     {
         driver.findElement(enter).click();
     }
+
     public String msgAlert()
     {
         try {
@@ -42,6 +45,7 @@ public class LoginPage
         }
         return driver.findElement(msgAlertSucesso).getText();
     }
+
     public void fecharBug()
     {
         driver.quit();
@@ -49,6 +53,7 @@ public class LoginPage
 
         }
     }
+
     public void acessoHome()
     {
         try {
